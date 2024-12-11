@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${produit.id} != null ? 'Modifier Produit' : 'Ajouter Produit'"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1 th:text="${produit.id} != null ? 'Modifier Produit' : 'Ajouter Produit'"></h1>
+<form th:action="@{${produit.id} != null ? '/produits/' + ${produit.id} : '/produits/add'}" method="post" th:object="${produit}">
+    <div class="mb-3">
+        <label for="designation" class="form-label">Désignation</label>
+        <input type="text" id="designation" th:field="*{designation}" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="prix" class="form-label">Prix</label>
+        <input type="number" id="prix" th:field="*{prix}" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary" th:text="${produit.id} != null ? 'Modifier' : 'Ajouter'"></button>
+    <a href="/produits" class="btn btn-secondary">Annuler</a>
+</form>
+</body>
+</html>

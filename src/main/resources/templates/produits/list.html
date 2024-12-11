@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Produits</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optionnel : Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<h1>Liste des Produits</h1>
+<a href="/produits/add" class="btn btn-info">Créer un nouveau produit</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Désignation</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="produit : ${produits}">
+        <td th:text="${produit.id}"></td>
+        <td th:text="${produit.designation}"></td>
+        <td th:text="${produit.prix}"></td>
+        <td>
+            <!-- Lien pour éditer un produit -->
+            <a th:href="@{/produits/edit/(id=${produit.id})}" class="btn
+btn-success">Modifier</a> |
+            <!-- Lien pour supprimer un produit -->
+            <a th:href="@{/produits/delete/(id=${produit.id})}"
+               class="btn btn-danger"
+               onclick="return confirm('Êtes-vous sûr de vouloir supprimerce produit ?');">
+                Supprimer
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
